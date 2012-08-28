@@ -35,6 +35,7 @@ import org.switchyard.config.model.composite.BindingModel;
 import org.switchyard.config.model.composite.CompositeModel;
 import org.switchyard.config.model.composite.CompositeReferenceModel;
 import org.switchyard.config.model.composite.CompositeServiceModel;
+import org.switchyard.config.model.selector.OperationSelectorModel;
 
 /**
  * A version 1 BindingModel.
@@ -45,6 +46,7 @@ public class V1BindingModel extends BaseTypedModel implements BindingModel {
 
     private ContextMapperModel _contextMapper;
     private MessageComposerModel _messageComposer;
+    private OperationSelectorModel _operationSelector;
 
     /**
      * Constructs a new V1BindingModel of the specified "type".
@@ -80,6 +82,7 @@ public class V1BindingModel extends BaseTypedModel implements BindingModel {
         Set<String> mco = new LinkedHashSet<String>();
         mco.add(ContextMapperModel.CONTEXT_MAPPER);
         mco.add(MessageComposerModel.MESSAGE_COMPOSER);
+        mco.add(OperationSelectorModel.OPERATION_SELECTOR);
         if (childrenOrder != null) {
             mco.addAll(Arrays.asList(childrenOrder));
         }
@@ -120,6 +123,17 @@ public class V1BindingModel extends BaseTypedModel implements BindingModel {
             _messageComposer = (MessageComposerModel)getFirstChildModel(MessageComposerModel.MESSAGE_COMPOSER);
         }
         return _messageComposer;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public OperationSelectorModel getOperationSelector() {
+        if (_operationSelector == null) {
+            _operationSelector = (OperationSelectorModel)getFirstChildModelStartsWith(OperationSelectorModel.OPERATION_SELECTOR);
+        }
+        return _operationSelector;
     }
 
     @Override

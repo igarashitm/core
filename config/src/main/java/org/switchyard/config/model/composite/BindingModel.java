@@ -22,6 +22,7 @@ package org.switchyard.config.model.composite;
 import org.switchyard.config.model.TypedModel;
 import org.switchyard.config.model.composer.ContextMapperModel;
 import org.switchyard.config.model.composer.MessageComposerModel;
+import org.switchyard.config.model.selector.OperationSelectorModel;
 
 /**
  * The "binding" configuration model.
@@ -71,4 +72,9 @@ public interface BindingModel extends TypedModel {
      */
     public MessageComposerModel getMessageComposer();
 
+    /**
+     * Gets the child operation selector model.
+     * @return the child operation selector model
+     */
+    public OperationSelectorModel getOperationSelector();
 }

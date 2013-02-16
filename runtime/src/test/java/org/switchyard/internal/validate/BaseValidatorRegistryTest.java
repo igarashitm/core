@@ -26,7 +26,9 @@ import junit.framework.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.switchyard.metadata.java.JavaService;
+import org.switchyard.tests.DefaultValidationResult;
 import org.switchyard.validate.BaseValidator;
+import org.switchyard.validate.ValidationResult;
 import org.switchyard.validate.Validator;
 import org.switchyard.validate.ValidatorRegistry;
 
@@ -49,8 +51,8 @@ public class BaseValidatorRegistryTest {
         
         BaseValidator<String> t = 
             new BaseValidator<String>(name) {
-                public boolean validate(String obj) {
-                    return obj != null;
+                public ValidationResult validate(String obj) {
+                    return new DefaultValidationResult(obj != null);
                 }
         };
         
@@ -120,8 +122,9 @@ public class BaseValidatorRegistryTest {
         }
 
         @Override
-        public boolean validate(Object obj) {
-            return obj != null;
+        public ValidationResult validate(Object obj) {
+            return new DefaultValidationResult(obj != null);
         }
     }
+    
 }

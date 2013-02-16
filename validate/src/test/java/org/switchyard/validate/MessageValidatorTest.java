@@ -21,9 +21,8 @@ package org.switchyard.validate;
 
 import org.junit.Assert;
 import org.junit.Test;
+import org.switchyard.Message;
 import org.switchyard.internal.DefaultMessage;
-import org.switchyard.internal.transform.BaseTransformerRegistry;
-import org.switchyard.transform.TransformSequence;
 
 import javax.xml.namespace.QName;
 import java.io.IOException;
@@ -38,9 +37,11 @@ public class MessageValidatorTest {
         final QName A = new QName("a");
 
         DefaultMessage message = new DefaultMessage().setContent(A);
-        MessageValidator validator = new MessageValidator();
+        MessageValidator<Message> validator = new MessageValidator<Message>();
 
-        Assert.assertTrue(validator.validate(message));
+        ValidationResult result = validator.validate(message);
+        Assert.assertTrue(result.isValid());
+        Assert.assertNull(result.getDetail());
         Assert.assertEquals(message, validator.getMessage());
     }
 }

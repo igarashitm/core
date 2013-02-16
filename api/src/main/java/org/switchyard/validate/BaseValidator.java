@@ -75,9 +75,6 @@ public abstract class BaseValidator<T> implements Validator<T> {
         }
     }
 
-    @Override
-    public abstract boolean validate(T subject);
-
     /**
      * Get the type QName for the specified Java type.
      * <p/>

@@ -19,22 +19,19 @@
 
 package org.switchyard.deploy.internal.validators;
 
-import org.switchyard.validate.BaseValidator;
 import org.switchyard.validate.ValidationResult;
 
-import javax.xml.namespace.QName;
-
-/**
- * @author <a href="mailto:tm.igarashi@gmail.com">Tomohisa Igarashi</a>
- */
-public class BValidator extends BaseValidator {
-
-    public BValidator() {
-        super(new QName("B"));
+public class DefaultValidationResult implements ValidationResult {
+    private boolean _valid;
+    public DefaultValidationResult(boolean valid) {
+        _valid = valid;
     }
-
     @Override
-    public ValidationResult validate(Object obj) {
-        return new DefaultValidationResult(obj != null);
+    public boolean isValid() {
+        return _valid;
+    }
+    @Override
+    public String getDetail() {
+        return null;
     }
 }

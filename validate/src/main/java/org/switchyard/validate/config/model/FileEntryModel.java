@@ -1,7 +1,7 @@
 /*
  * JBoss, Home of Professional Open Source
  * Copyright 2011 Red Hat Inc. and/or its affiliates and other contributors
- * as indicated by the @author tags. All rights reserved.
+ * as indicated by the @authors tag. All rights reserved.
  * See the copyright.txt in the distribution for a
  * full listing of individual contributors.
  *
@@ -17,28 +17,32 @@
  * MA  02110-1301, USA.
  */
 
-package org.switchyard.validate;
+package org.switchyard.validate.config.model;
 
-import org.switchyard.Message;
+import org.switchyard.config.model.Model;
 
 /**
- * @author <a href="mailto:tm.igarashi@gmail.com">Tomohisa Igarashi</a>
+ * A "entry" configuration model.
  */
-public class MessageValidator<T> extends BaseValidator<Message> {
+public interface FileEntryModel extends Model {
 
-    private Message _message;
+    /** entry. */
+    public static final String ENTRY = "entry";
+    
+    /** file. */
+    public static final String FILE = "file";
+    
+    /**
+     * Get file.
+     * @return file
+     */
+    String getFile();
 
-    @Override
-    public ValidationResult validate(Message message) {
-        this._message = message;
-        if (message != null) {
-            return ValidatorUtil.validResult();
-        } else {
-            return ValidatorUtil.invalidResult("Message is null");
-        }
-    }
-
-    public Message getMessage() {
-        return _message;
-    }
+    /**
+     * Set file.
+     * @param file file
+     * @return model representation
+     */
+    FileEntryModel setFile(String file);
+    
 }

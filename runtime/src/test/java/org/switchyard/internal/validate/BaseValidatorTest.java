@@ -24,7 +24,9 @@ import javax.xml.namespace.QName;
 import junit.framework.Assert;
 
 import org.junit.Test;
+import org.switchyard.tests.DefaultValidationResult;
 import org.switchyard.validate.BaseValidator;
+import org.switchyard.validate.ValidationResult;
 
 public class BaseValidatorTest {
 
@@ -32,8 +34,8 @@ public class BaseValidatorTest {
     public void testGetName_default_with_generics() {
         BaseValidator<String> strv =
             new BaseValidator<String>() {
-                public boolean validate(String obj) {
-                    return obj != null;
+                public ValidationResult validate(String obj) {
+                    return new DefaultValidationResult(obj != null);
                 }
         };
 
@@ -45,8 +47,8 @@ public class BaseValidatorTest {
         // No generics...
         BaseValidator strv =
             new BaseValidator() {
-                public boolean validate(Object obj) {
-                    return obj != null;
+                public ValidationResult validate(Object obj) {
+                    return new DefaultValidationResult(obj != null);
                 }
         };
 
@@ -59,8 +61,8 @@ public class BaseValidatorTest {
 
         BaseValidator<String> strv =
             new BaseValidator<String>(name) {
-                public boolean validate(String obj) {
-                    return obj != null;
+                public ValidationResult validate(String obj) {
+                    return new DefaultValidationResult(obj != null);
                 }
         };
 
@@ -73,11 +75,12 @@ public class BaseValidatorTest {
 
         BaseValidator strv =
             new BaseValidator(name) {
-                public boolean validate(Object obj) {
-                    return obj != null;
+                public DefaultValidationResult validate(Object obj) {
+                    return new DefaultValidationResult(obj != null);
                 }
         };
 
         Assert.assertEquals(name, strv.getName());
     }
+    
 }

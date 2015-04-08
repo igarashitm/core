@@ -1,6 +1,7 @@
 package org.switchyard;
 
 import static org.jboss.logging.Logger.Level.ERROR;
+import static org.jboss.logging.Logger.Level.INFO;
 
 import org.jboss.logging.Logger;
 import org.jboss.logging.annotations.MessageLogger;
@@ -70,4 +71,33 @@ public interface BaseDeployLogger {
     @LogMessage(level = ERROR) 
     @Message(id = 10905, value="Error deactivating reference binding.")
     void errorDeactivatingReferenceBinding(@Cause Throwable e);
+    
+    /**
+     * enforcingInteractionPolicyDependency method definition.
+     * @param dependency dependency
+     * @param subject subject
+     */
+    @LogMessage(level = INFO)
+    @Message(id = 10906, value="Enforcing %s interaction policy as a dependency of %s")
+    void enforcingInteractionPolicyDependency(String dependency, String subject);
+
+    /**
+     * enforcingImplementationPolicyDependency method definition.
+     * @param dependency dependency
+     * @param subject subject
+     */
+    @LogMessage(level = INFO)
+    @Message(id = 10907, value="Enforcing %s implementation policy as a dependency of %s")
+    void enforcingImplementationPolicyDependency(String dependency, String subject);
+
+    /**
+     * autoStartupIsDisabled method definition.
+     * @param binding binding
+     * @param service service
+     * @param deploy deployment
+     */
+    @LogMessage(level = INFO)
+    @Message(id = 10908, value="Auto startup is disabled - start the service bindings manually: [Binding=%s, Service=%s, Deployment=%s]")
+    void autoStartupIsDisabled(String binding, String service, String deploy);
+
 }
